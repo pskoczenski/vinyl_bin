@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+.album-show {
+  padding: 10px;
+  border: 1px solid gray;
+  margin: 5px;
+  border-radius: 25px;
+  background: #e3e3e3;
+}

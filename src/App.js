@@ -1,10 +1,8 @@
-import React from 'react';
-import './styles/App.css';
-import Nav from './components/main-nav';
-import Search from './components/search';
-import AlbumSearch from './components/album-search';
-
-
+import React from "react";
+import "./styles/App.css";
+import Nav from "./components/main-nav";
+import Search from "./components/search";
+import AlbumSearch from "./components/album-search";
 
 function App() {
   return (
@@ -14,10 +12,9 @@ function App() {
         {/* <Nav /> */}
       </header>
       <div>
-        {/* <Search /> */}
-        <AlbumSearch />
+        <Search />
+        {/* <AlbumSearch /> */}
       </div>
-
     </div>
   );
 }
