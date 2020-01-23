@@ -1,48 +1,43 @@
 import React, { useState } from "react";
 
 const Search = () => {
-  const [hasError, setErrors] = useState(false);
   const [albums, setAlbums] = useState([]);
   const [query, setQuery] = useState("");
+  const setUrl = query => `https://api.discogs.com/database/search?q={
+    ${query}}&format=vinyl&type=release&token=JkxSftiJlhpPweROvvpAicjcsQWekgpKXYMqsAfY`;
   //   const query = "Reflektor";
 
   const AlbumSearch = () => {
-    async function fetchData() {
-      const res = await fetch(
-        "https://api.discogs.com/database/search?q={" +
-          query +
-          "}&format=vinyl&type=release&token=JkxSftiJlhpPweROvvpAicjcsQWekgpKXYMqsAfY"
-      );
+    async function fetchData(query) {
+      const res = await fetch(setUrl(query));
       res
         .json()
         .then(res => setAlbums(res.results))
-        .catch(err => setErrors(err));
+        .catch(err => console.log(err));
     }
     console.log(albums[0]);
 
-    fetchData();
+    fetchData(query);
     setQuery("");
   };
 
-  const AlbumsList = props => {
-    return (
-      <>
-        {albums.map(album => (
-          <ul className="album-show">
-            <img src={album.cover_image} style={{ width: "150px" }} />
-            <li key={album.id}> Title: {album.title}</li>
-            <li key={album.id + 1}> Year: {album.year}</li>
-            <li key={album.id + 2}> Style: {album.style}</li>
-            <li key={album.id + 3}> Country: {album.country}</li>
-            <li key={album.id + 4}> CatalogNo: {album.catno}</li>
-            <li key={album.id + 5}> Label: {album.label[0]}</li>
-          </ul>
-        ))}
-      </>
-    );
+  const AlbumsList = ({albums}) => {
+    return albums.map(album => {
+      const {id, title, year, style, country, catno, cover_image} = album;
+      const [label] = album.label
+      return (
+            <ul key={id} className="album-show">
+              <img src={cover_image} style={{ width: "150px" }} alt={cover_image} />
+              <li > Title: {title}</li>
+              <li> Year: {year}</li>
+              <li> Style: {style}</li>
+              <li> Country: {country}</li>
+              <li> CatalogNo: {catno}</li>
+              <li> Label: {label}</li>
+            </ul>
+        )
+    })
   };
-
-  console.log(query);
 
   return (
     <div>
@@ -62,9 +57,7 @@ const Search = () => {
       <br />
       <br />
       <br />
-      {/* <img src={albums.cover_image} style={{ width: "150px" }} /> */}
-      {/* <span>{albums.title}</span> */}
-      <AlbumsList />
+      <AlbumsList albums={albums}/>
     </div>
   );
 };
