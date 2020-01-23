@@ -1,9 +1,7 @@
 import React from "react";
-import { Box, Grommet } from 'grommet';
-import Nav from "./components/main-nav";
+import { Box, Button, Heading, Grommet } from 'grommet';
+import { Notification } from 'grommet-icons';
 import Search from "./components/search";
-import AlbumSearch from "./components/album-search";
-// import gromBox from "./components/grom-comps/gromBox"
 
 const theme = {
   global: {
@@ -18,12 +16,12 @@ const theme = {
   },
 };
 
-const gromBox = (props) => (
+const AppBar = (props) => (
   <Box
     tag='header'
     direction='row'
     align='center'
-    justify='between'
+    justify='center'
     background='brand'
     pad={{ left: 'medium', right: 'small', vertical: 'small' }}
     elevation='medium'
@@ -35,12 +33,12 @@ const gromBox = (props) => (
 function App() {
   return (
     <Grommet theme={theme}>
-      <gromBox>
-        <h1>Vinyl Bin</h1>
-      </gromBox>
+      <AppBar>
+        <Heading level='3' margin='none'>Vinyl Bin</Heading>
+        <Button icon={<Notification />} onClick={() => {}} />
+      </AppBar>
       <div>
         <Search />
-        {/* <AlbumSearch /> */}
       </div>
       
     </Grommet>
