@@ -1,18 +1,24 @@
 import React from "react";
 import "./styles/App.css";
-import Search from "./components/search";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Home from "./Home";
+import Login from "./Login";
+import SignUp from "./SignUp";
+import { AuthProvider } from "./Auth";
+import PrivateRoute from "./PrivateRoute";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Vinyl Bin</h1>
-      </header>
-      <div>
-        <Search />
-      </div>
-    </div>
+    <AuthProvider>
+      <Router>
+        <div>
+          <PrivateRoute exact path="/" component={Home} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={SignUp} />
+        </div>
+      </Router>
+    </AuthProvider>
   );
-}
+};
 
 export default App;
