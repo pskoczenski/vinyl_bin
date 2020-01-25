@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+// import { withRouter } from "react-router";
+import { Link } from "react-router-dom";
+
 import {
   Box,
   TextField,
@@ -32,6 +35,7 @@ const Search = () => {
     return albums.map(album => {
       const {id, title, year, style, country, catno, cover_image, genre} = album;
       const [label] = album.label
+      console.log(album)
       return (
         <Card variant="outlined" m={1}>
           <Box display="flex" alignItems="center" >
@@ -49,6 +53,9 @@ const Search = () => {
                 <ListItem>Style: {style}</ListItem>
                 <ListItem>Catalog #: {catno}</ListItem>
               </List>
+              {/* <Link to="album" album={album}> Select </Link> */}
+              <Link to={{ pathname: "/album", album: album }}>select</Link>
+              
             </Box>
           </Box>
         </Card>

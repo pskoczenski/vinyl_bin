@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from "./Home";
 import Login from "./Login";
 import SignUp from "./SignUp";
+import AlbumShow from "./AlbumShow";
 import { AuthProvider } from "./Auth";
 import PrivateRoute from "./PrivateRoute";
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -15,6 +16,7 @@ const App = () => {
       <Router>
         <div>
           <PrivateRoute exact path="/" component={Home} />
+          <PrivateRoute exact path="/album" component={AlbumShow} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
         </div>
