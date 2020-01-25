@@ -1,11 +1,18 @@
 import React, { useState } from "react";
+import {
+  Box,
+  TextField,
+  Button,
+  List,
+  ListItem,
+  Card
+} from '@material-ui/core';
 
 const Search = () => {
   const [albums, setAlbums] = useState([]);
   const [query, setQuery] = useState("");
   const setUrl = query => `https://api.discogs.com/database/search?q={
     ${query}}&format=vinyl&type=release&token=JkxSftiJlhpPweROvvpAicjcsQWekgpKXYMqsAfY`;
-  //   const query = "Reflektor";
 
   const AlbumSearch = () => {
     async function fetchData(query) {
@@ -23,42 +30,58 @@ const Search = () => {
 
   const AlbumsList = ({albums}) => {
     return albums.map(album => {
-      const {id, title, year, style, country, catno, cover_image} = album;
+      const {id, title, year, style, country, catno, cover_image, genre} = album;
       const [label] = album.label
       return (
-            <ul key={id} className="album-show">
+        <Card variant="outlined" m={1}>
+          <Box display="flex" alignItems="center" >
+            <Box m={2} justifyContent="center" alignItems="center">
               <img src={cover_image} style={{ width: "150px" }} alt={cover_image} />
-              <li > Title: {title}</li>
-              <li> Year: {year}</li>
-              <li> Style: {style}</li>
-              <li> Country: {country}</li>
-              <li> CatalogNo: {catno}</li>
-              <li> Label: {label}</li>
-            </ul>
+              <h3>{title}</h3>
+            </Box>
+            <Box>
+              <List key={id}>
+                {/* <ListItem>Title: {title}</ListItem> */}
+                <ListItem>Year: {year}</ListItem>
+                <ListItem>Country: {country}</ListItem>
+                <ListItem>Label: {label}</ListItem>
+                <ListItem>Genre: {genre}</ListItem>
+                <ListItem>Style: {style}</ListItem>
+                <ListItem>Catalog #: {catno}</ListItem>
+              </List>
+            </Box>
+          </Box>
+        </Card>
+            // <ul key={id} className="album-show">
+            //   <img src={cover_image} style={{ width: "150px" }} alt={cover_image} />
+            //   <li > Title: {title}</li>
+            //   <li> Year: {year}</li>
+            //   <li> Style: {style}</li>
+            //   <li> Country: {country}</li>
+            //   <li> CatalogNo: {catno}</li>
+            //   <li> Label: {label}</li>
+            // </ul>
         )
     })
   };
 
   return (
-    <div>
-      <br />
-      <br />
-      <br />
-      <input
-        value={query}
-        onChange={e => setQuery(e.target.value)}
-        id="albumSearch"
-        type="text"
-        placeholder="Search by Album Title..."
-      />
-      <button id="albumSearchSubmit" onClick={() => AlbumSearch()}>
-        Search
-      </button>
-      <br />
-      <br />
-      <br />
-      <AlbumsList albums={albums}/>
-    </div>
+    <>
+    <Box component='h1'>Welcome to Vinyl Bin!</Box>
+    <Box component='h3'>Vinyl Bin is a simple solution to keeping track of all the records in your collection</Box>
+    <Box component='p'>
+      You can start here by searching for your favorite Vinyl Records by album title
+    </Box>
+    <Box mt={4} display="flex" alignItems="center">
+      <TextField id="outlined-search" value={query} label="Album Title" type="search" variant="outlined" onChange={e => setQuery(e.target.value)} />
+      <Box mb={0} ml={1}>
+        <Button id="albumSearchSubmit" variant="contained" color="primary"  onClick={() => AlbumSearch()}>
+          Search
+        </Button>
+      </Box>
+    </Box>
+    <AlbumsList albums={albums}/>
+    </>
   );
 };
 
