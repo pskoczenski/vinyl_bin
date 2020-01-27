@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "./Auth";
 import Nav from "./Nav"
 import {
   Box,
@@ -9,16 +10,16 @@ import {
 
 
 const AlbumShow = (props) => {
-  console.log("*&*&*&**&*&**&*&**&")
-  console.log(props.location.album)
 
   const {id, title, year, style, country, catno, cover_image, genre} = props.location.album;
   const [label] = props.location.album.label
+  const {currentUser} = useContext(AuthContext);
+
 
   return (
     <>
       <Nav />
-      <h2>Test</h2>
+      <h2> { title } </h2>
       <Card variant="outlined" m={1}>
           <Box display="flex" alignItems="center" >
             <Box m={2} justifyContent="center" alignItems="center">

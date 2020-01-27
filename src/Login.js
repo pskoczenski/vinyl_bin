@@ -35,14 +35,16 @@ const Login = ({ history }) => {
   }
 
   return (
+    <>
     <Container maxWidth="sm">
-      <h1>Log in</h1>
+      <Box component='h1'>Welcome to Vinyl Bin!</Box>
+      <h2>Log in</h2>
       <form onSubmit={handleLogin}>
         <Box mb={2}>
-          <TextField id="outlined-basic" label="Email" variant="outlined" name="email" type="email" placeholder="Email" />
+          <TextField label="Email" variant="outlined" name="email" type="email" placeholder="Email" />
         </Box>
         <Box mb={2}>
-          <TextField id="outlined-basic" label="Password" variant="outlined" name="password" type="password" placeholder="Password" />
+          <TextField label="Password" variant="outlined" name="password" type="password" placeholder="Password" />
         </Box>
         <Box mb={2}>
           <Button variant="contained" color="primary" type="submit">Log In</Button>
@@ -52,6 +54,7 @@ const Login = ({ history }) => {
         <Link to="signup"> here</Link>
       </h5>
     </Container>
+    </>
   );
 };
 

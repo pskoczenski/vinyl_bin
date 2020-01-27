@@ -24,14 +24,16 @@ const SignUp = ({ history }) => {
   }, [history]);
 
   return (
+    <>
     <Container maxWidth="sm">
-      <h1>Sign Up</h1>
+      <Box component='h1'>Welcome to Vinyl Bin!</Box>
+      <h2>Sign Up</h2>
       <form onSubmit={handleSignUp}>
         <Box mb={2}>
-          <TextField id="outlined-basic" label="Email" variant="outlined" name="email" type="email" placeholder="Email" />
+          <TextField label="Email" variant="outlined" name="email" type="email" placeholder="Email" />
         </Box>
         <Box mb={2}>
-          <TextField id="outlined-basic" label="Password" variant="outlined" name="password" type="password" placeholder="Password" />
+          <TextField label="Password" variant="outlined" name="password" type="password" placeholder="Password" />
         </Box>
         <Box mb={2}>
           <Button variant="contained" color="primary" type="submit" m={4}>Sign Up</Button>
@@ -41,6 +43,7 @@ const SignUp = ({ history }) => {
         <Link to="login"> here</Link>
       </h5>
     </Container>
+    </>
   );
 };
 
