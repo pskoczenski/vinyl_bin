@@ -10,6 +10,8 @@ import {
   ListItem,
   Card
 } from '@material-ui/core';
+import { AuthContext } from "../Auth";
+
 
 const Search = () => {
   const [albums, setAlbums] = useState([]);
@@ -26,6 +28,7 @@ const Search = () => {
         .catch(err => console.log(err));
     }
     console.log(albums[0]);
+    console.log("AuthContext =" + AuthContext.Provider.value)
 
     fetchData(query);
     setQuery("");
@@ -45,7 +48,6 @@ const Search = () => {
             </Box>
             <Box>
               <List key={id}>
-                {/* <ListItem>Title: {title}</ListItem> */}
                 <ListItem>Year: {year}</ListItem>
                 <ListItem>Country: {country}</ListItem>
                 <ListItem>Label: {label}</ListItem>
@@ -53,21 +55,12 @@ const Search = () => {
                 <ListItem>Style: {style}</ListItem>
                 <ListItem>Catalog #: {catno}</ListItem>
               </List>
-              {/* <Link to="album" album={album}> Select </Link> */}
-              <Link to={{ pathname: "/album", album: album }}>select</Link>
-              
             </Box>
+            <Link to={{ pathname: "/album", album: album }}>
+              <Button>Select Album</Button>
+            </Link>
           </Box>
         </Card>
-            // <ul key={id} className="album-show">
-            //   <img src={cover_image} style={{ width: "150px" }} alt={cover_image} />
-            //   <li > Title: {title}</li>
-            //   <li> Year: {year}</li>
-            //   <li> Style: {style}</li>
-            //   <li> Country: {country}</li>
-            //   <li> CatalogNo: {catno}</li>
-            //   <li> Label: {label}</li>
-            // </ul>
         )
     })
   };
@@ -75,7 +68,6 @@ const Search = () => {
   return (
     <>
     <Box component='h1'>Welcome to Vinyl Bin!</Box>
-    <Box component='h3'>Vinyl Bin is a simple solution to keeping track of all the records in your collection</Box>
     <Box component='p'>
       You can start here by searching for your favorite Vinyl Records by album title
     </Box>

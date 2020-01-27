@@ -10,6 +10,7 @@ import PrivateRoute from "./PrivateRoute";
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 const App = () => {
+
   return (
     <AuthProvider>
       <CssBaseline />
