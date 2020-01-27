@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import app from "./base";
+import { auth } from "./base";
 import { AuthContext } from "./Auth";
 import { 
   AppBar,
@@ -26,7 +26,7 @@ const Nav = () => {
         <Box mr={2}>
           <Typography variant="h6" >{ currentUser.email }</Typography>
         </Box>
-        <Button color="secondary" variant="contained" onClick={() => app.auth().signOut()}>Sign out</Button>
+        <Button color="secondary" variant="contained" onClick={() => auth.signOut()}>Sign out</Button>
       </Toolbar>
     </AppBar>
   )

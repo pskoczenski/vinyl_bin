@@ -1,8 +1,13 @@
 import React, { useContext } from "react";
 import { AuthContext } from "./Auth";
+import { Link } from "react-router-dom";
+
 import Nav from "./Nav"
+import { db }  from "./base";
+
 import {
   Box,
+  Button,
   List,
   ListItem,
   Card,
@@ -16,6 +21,26 @@ const AlbumShow = (props) => {
   const [label] = props.location.album.label
   const {currentUser} = useContext(AuthContext);
 
+  const addAlbum = () => {
+    db.collection("album").add({
+      artist: "",
+      country: country,
+      genre: genre,
+      label: label,
+      style: style,
+      title: title,
+      user_id: currentUser.uid,
+      year: year 
+    })
+    .then(docRef => {
+        console.log("Document written with ID: ", docRef.id);
+        
+    })
+    .catch(error => {
+        console.error("Error adding document: ", error);
+    });
+    
+  }
 
   return (
     <>
@@ -39,7 +64,11 @@ const AlbumShow = (props) => {
               </List>
             </Box>
           </Box>
+          <Button id="albumSearchSubmit" variant="contained" color="primary"  onClick={() => addAlbum()}>
+            Add Album
+          </Button>
         </Card>
+        <Link to="/collection">View Collection</Link>
         </Container>
     </>
   )

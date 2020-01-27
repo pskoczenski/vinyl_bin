@@ -1,7 +1,7 @@
 import React, { useCallback, useContext } from "react";
 import { withRouter, Redirect } from "react-router";
 import { Link } from "react-router-dom";
-import app from "./base.js";
+import { auth } from "./base.js";
 import { AuthContext } from "./Auth.js";
 import { 
   Container,
@@ -17,8 +17,7 @@ const Login = ({ history }) => {
       event.preventDefault();
       const { email, password } = event.target.elements;
       try {
-        await app
-          .auth()
+        await auth
           .signInWithEmailAndPassword(email.value, password.value);
         history.push("/");
       } catch (error) {
