@@ -5,7 +5,8 @@ import {
   Box,
   List,
   ListItem,
-  Card
+  Card,
+  Container
 } from '@material-ui/core';
 
 
@@ -19,6 +20,7 @@ const AlbumShow = (props) => {
   return (
     <>
       <Nav />
+      <Container>
       <h2> { title } </h2>
       <Card variant="outlined" m={1}>
           <Box display="flex" alignItems="center" >
@@ -38,6 +40,7 @@ const AlbumShow = (props) => {
             </Box>
           </Box>
         </Card>
+        </Container>
     </>
   )
 }
