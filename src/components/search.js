@@ -32,7 +32,6 @@ const Search = () => {
   };
 
   const AlbumsList = ({albums}) => {
-    console.log("albums &*&*&*&*&*&", {albums})
     return albums.map(album => {
       const {id, title, year, style, country, catno, cover_image, genre} = album;
       const [label] = album.label

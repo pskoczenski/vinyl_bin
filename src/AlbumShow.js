@@ -22,9 +22,10 @@ const AlbumShow = (props) => {
   const {currentUser} = useContext(AuthContext);
 
   const addAlbum = () => {
-    db.collection("album").add({
+    db.collection("albums").add({
       artist: "",
       country: country,
+      cover_image: cover_image,
       genre: genre,
       label: label,
       style: style,

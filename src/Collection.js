@@ -10,43 +10,38 @@ import {
   Card
 } from '@material-ui/core';
 
-
+const userCollectionArray = []
 
 const Collection = () => {
   const {currentUser} = useContext(AuthContext);
   const userId = currentUser.uid
-  const [userCollection, setUserCollection] = useState([])
-  const userCollectionArray = []
+  const [userCollection, setUserCollection] = useState(null)
 
-
-  let albums = db.collection('albums');
-  let query = albums.where('user_id', '==', userId).get()
-    .then(snapshot => {
-      if (snapshot.empty) {
-        console.log('No matching documents.');
-        return;
-      }  
-
-      snapshot.forEach(doc => {
-        console.log(doc.id, '=>', doc.data());
-        userCollectionArray.push(doc.data())
+  useEffect(() => {
+    const porcupine = () => {
+      const albums = db.collection('albums');
+      albums.where('user_id', '==', userId).get()
+      .then(snapshot => {
+        if (snapshot.empty) {
+          console.log('No matching documents.');
+          return;
+        }  
+        snapshot.forEach(doc => {
+          console.log(doc.id, '=>', doc.data());
+          userCollectionArray.push(doc.data())
+        });
+        setUserCollection(userCollection => [userCollection, userCollectionArray])
+      })
+      .catch(err => {
+        console.log('Error getting documents', err);
       });
+    }
+    porcupine()
+  }, [])
 
-    })
-    .catch(err => {
-      console.log('Error getting documents', err);
-    });
-
-    setUserCollection(userCollectionArray)
-
-
-    // useEffect(() => {
-    //   setUserCollection(userCollectionArray)
-    //   console.log("USER COLLECTION ==", )
-    // }, [])
-
-  const AlbumsList = ({albums}) => {
-    return albums.map(album => {
+  
+  const AlbumsList = ({pineapple}) => {
+    return pineapple.map(album => {
       const {id, title, year, style, country, catno, cover_image, genre} = album;
       const [label] = album.label
       return (
@@ -71,7 +66,6 @@ const Collection = () => {
       )
     })
   };
-    
 
   return (
     <>
@@ -79,11 +73,9 @@ const Collection = () => {
     <Container>
       <h1>Hello Collection</h1>
     </Container>
-    <AlbumsList albums={userCollection}/>
+    <AlbumsList pineapple={userCollectionArray}/>
     </>
   )
-
 }
-
 
 export default Collection;
