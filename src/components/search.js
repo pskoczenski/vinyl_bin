@@ -10,7 +10,6 @@ import {
   ListItem,
   Card
 } from '@material-ui/core';
-import { AuthContext } from "../Auth";
 
 
 const Search = () => {
@@ -26,19 +25,17 @@ const Search = () => {
         .json()
         .then(res => setAlbums(res.results))
         .catch(err => console.log(err));
-    }
-    console.log(albums[0]);
-    console.log("AuthContext =" + AuthContext.Provider.value)
 
+    }
     fetchData(query);
     setQuery("");
   };
 
   const AlbumsList = ({albums}) => {
+    console.log("albums &*&*&*&*&*&", {albums})
     return albums.map(album => {
       const {id, title, year, style, country, catno, cover_image, genre} = album;
       const [label] = album.label
-      console.log(album)
       return (
         <Card variant="outlined" m={1}>
           <Box display="flex" alignItems="center" >
@@ -61,7 +58,7 @@ const Search = () => {
             </Link>
           </Box>
         </Card>
-        )
+      )
     })
   };
 
@@ -71,6 +68,7 @@ const Search = () => {
     <Box component='p'>
       You can start here by searching for your favorite Vinyl Records by album title
     </Box>
+    <Link to="collection">View Collection</Link>
     <Box mt={4} display="flex" alignItems="center">
       <TextField id="outlined-search" value={query} label="Album Title" type="search" variant="outlined" onChange={e => setQuery(e.target.value)} />
       <Box mb={0} ml={1}>
