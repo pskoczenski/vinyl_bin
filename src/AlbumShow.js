@@ -48,14 +48,14 @@ const AlbumShow = (props) => {
       <Nav />
       <Container>
       <h2> { title } </h2>
-      <Card variant="outlined" m={1}>
+      <Card key={id} variant="outlined" m={1}>
           <Box display="flex" alignItems="center" >
             <Box m={2} justifyContent="center" alignItems="center">
               <img src={cover_image} style={{ width: "150px" }} alt={cover_image} />
               <h3>{title}</h3>
             </Box>
             <Box>
-              <List key={id}>
+              <List>
                 <ListItem>Year: {year}</ListItem>
                 <ListItem>Country: {country}</ListItem>
                 <ListItem>Label: {label}</ListItem>
@@ -65,9 +65,11 @@ const AlbumShow = (props) => {
               </List>
             </Box>
           </Box>
-          <Button id="albumSearchSubmit" variant="contained" color="primary"  onClick={() => addAlbum()}>
-            Add Album
-          </Button>
+          <Box alignItems="center" m={2}>
+            <Button variant="contained" color="primary"  onClick={() => addAlbum()}>
+              Add Album
+            </Button>
+          </Box>
         </Card>
         <Link to="/collection">View Collection</Link>
         </Container>
