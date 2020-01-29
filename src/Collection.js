@@ -37,7 +37,7 @@ const Collection = () => {
       });
     }
     porcupine()
-  }, [])
+  }, [userId])
 
   
   const AlbumsList = ({pineapple}) => {
@@ -71,9 +71,9 @@ const Collection = () => {
     <>
     <Nav />
     <Container>
-      <h1>Hello Collection</h1>
+      <h1>View Your Collection</h1>
+      <AlbumsList pineapple={userCollectionArray}/>
     </Container>
-    <AlbumsList pineapple={userCollectionArray}/>
     </>
   )
 }
