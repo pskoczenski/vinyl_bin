@@ -10,7 +10,6 @@ import {
   ListItem,
   Card
 } from '@material-ui/core';
-import { AuthContext } from "../Auth";
 
 
 const Search = () => {
@@ -26,10 +25,8 @@ const Search = () => {
         .json()
         .then(res => setAlbums(res.results))
         .catch(err => console.log(err));
-    }
-    console.log(albums[0]);
-    console.log("AuthContext =" + AuthContext.Provider.value)
 
+    }
     fetchData(query);
     setQuery("");
   };
@@ -38,11 +35,10 @@ const Search = () => {
     return albums.map(album => {
       const {id, title, year, style, country, catno, cover_image, genre} = album;
       const [label] = album.label
-      console.log(album)
       return (
         <Card variant="outlined" m={1}>
           <Box display="flex" alignItems="center" >
-            <Box m={2} justifyContent="center" alignItems="center">
+            <Box m={2} width="50%" justifyContent="center" alignItems="center">
               <img src={cover_image} style={{ width: "150px" }} alt={cover_image} />
               <h3>{title}</h3>
             </Box>
@@ -61,7 +57,7 @@ const Search = () => {
             </Link>
           </Box>
         </Card>
-        )
+      )
     })
   };
 
@@ -71,6 +67,7 @@ const Search = () => {
     <Box component='p'>
       You can start here by searching for your favorite Vinyl Records by album title
     </Box>
+    <Link to="collection">View Collection</Link>
     <Box mt={4} display="flex" alignItems="center">
       <TextField id="outlined-search" value={query} label="Album Title" type="search" variant="outlined" onChange={e => setQuery(e.target.value)} />
       <Box mb={0} ml={1}>
