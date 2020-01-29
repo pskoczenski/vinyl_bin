@@ -45,9 +45,9 @@ const Collection = () => {
       const {id, title, year, style, country, catno, cover_image, genre} = album;
       const [label] = album.label
       return (
-        <Card key={id} variant="outlined" m={1}>
+        <Card key={id} variant="outlined" m={2}>
           <Box display="flex" alignItems="center" >
-            <Box m={2} justifyContent="center" alignItems="center">
+            <Box m={2} width="50%" justifyContent="center" alignItems="center">
               <img src={cover_image} style={{ width: "150px" }} alt={cover_image} />
               <h3>{title}</h3>
             </Box>

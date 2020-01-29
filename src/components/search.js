@@ -38,7 +38,7 @@ const Search = () => {
       return (
         <Card variant="outlined" m={1}>
           <Box display="flex" alignItems="center" >
-            <Box m={2} justifyContent="center" alignItems="center">
+            <Box m={2} width="50%" justifyContent="center" alignItems="center">
               <img src={cover_image} style={{ width: "150px" }} alt={cover_image} />
               <h3>{title}</h3>
             </Box>
