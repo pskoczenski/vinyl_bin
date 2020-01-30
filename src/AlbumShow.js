@@ -25,13 +25,15 @@ const AlbumShow = (props) => {
     db.collection("albums").add({
       artist: "",
       country: country,
+      catno: catno,
       cover_image: cover_image,
       genre: genre,
       label: label,
       style: style,
       title: title,
       user_id: currentUser.uid,
-      year: year 
+      year: year,
+      added_on: new Date()
     })
     .then(docRef => {
         console.log("Document written with ID: ", docRef.id);

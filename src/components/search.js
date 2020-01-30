@@ -67,7 +67,6 @@ const Search = () => {
     <Box component='p'>
       You can start here by searching for your favorite Vinyl Records by album title
     </Box>
-    <Link to="collection">View Collection</Link>
     <Box mt={4} display="flex" alignItems="center">
       <TextField id="outlined-search" value={query} label="Album Title" type="search" variant="outlined" onChange={e => setQuery(e.target.value)} />
       <Box mb={0} ml={1}>

@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "./Auth";
+import NavDrawer from "./NavDrawer"
 import Nav from "./Nav"
 import { Container } from "@material-ui/core";
 import { db }  from "./base";
@@ -45,7 +46,7 @@ const Collection = () => {
       const {id, title, year, style, country, catno, cover_image, genre} = album;
       const [label] = album.label
       return (
-        <Card key={id} variant="outlined" m={2}>
+        <Card key={catno} variant="outlined" m={2}>
           <Box display="flex" alignItems="center" >
             <Box m={2} width="50%" justifyContent="center" alignItems="center">
               <img src={cover_image} style={{ width: "150px" }} alt={cover_image} />
@@ -69,7 +70,7 @@ const Collection = () => {
 
   return (
     <>
-    <Nav />
+    <NavDrawer />
     <Container>
       <h1>View Your Collection</h1>
       <AlbumsList pineapple={userCollectionArray}/>
