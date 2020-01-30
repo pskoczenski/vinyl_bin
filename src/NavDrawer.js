@@ -141,7 +141,7 @@ export default function NavDrawer() {
       <Divider />
       <List>
         <ListItem>
-          <Link to="/">Search</Link>
+          <Link to="/">Add an Album</Link>
         </ListItem>
         <ListItem>
           <Link to="collection">Collection</Link>
